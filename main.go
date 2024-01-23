@@ -34,7 +34,7 @@ func main() {
 	//config := cors.DefaultConfig()
 	//config.AllowOrigins = []string{"http://localhost:5173"}  
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"https://taylord4u-forum.web.app"},
+		AllowOrigins:     []string{"https://taylord4u-forum.web.app", "http://localhost:5173"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Authorization", "Content-Type"},
 		AllowCredentials: true,
@@ -50,9 +50,13 @@ func main() {
 	
 
 	//SimpleUsers
-	//r.POST("/simplesignup", controllers.SimpleSignup)
-	//r.POST("/simplelogin", controllers.SimpleLogin)
-	//r.GET("/simplevalidate", middleware.RequireSimpleAuth, controllers.SimpleValidate)
+	// r.POST("/simplesignup", controllers.SimpleSignup)
+	// r.POST("/simplelogin", controllers.SimpleLogin)
+	// r.GET("/simplevalidate", middleware.RequireAuth, controllers.SimpleValidate)
+	// r.POST("/simplelogout", middleware.RequireSimpleAuth, controllers.SimpleLogout)
+	// r.GET("/simplegetallusers", controllers.GetAllSimpleUsers)
+
+
 
 	r.GET("/health", controllers.HealthCheckHandler)
 
@@ -71,6 +75,8 @@ func main() {
 	r.GET("/posts", controllers.PostsIndex)
 	r.GET("/posts/:id", controllers.PostsShow)
 	r.DELETE("/posts/:id", controllers.PostsDelete)
+	r.GET("/posts/tags/:tag", controllers.PostsUnderTag)
+	r.GET("/tags", controllers.AllTags)
 
 	//Comments
 	r.POST("/comments/:postid", controllers.CommentsCreate)
