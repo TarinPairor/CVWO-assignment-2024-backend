@@ -9,7 +9,7 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 )
 
-
+// WAS SUPPOSED TO BE USED FOR USER WITH PASSWORD
 
 func init() {
 	db = initializers.GetDB()
